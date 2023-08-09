@@ -24,9 +24,17 @@ class _LoginPageState extends State<LoginPage> {
     ),
   );
 
-  loginUsingMetamask(BuildContext context) async {
-    await service.init();
+  @override
+  void initState() {
+    super.initState();
+    startWalletConnectService();
+  }
 
+  startWalletConnectService() async {
+    await service.init();
+  }
+
+  loginUsingMetamask(BuildContext context) {
     service.open(context: context);
     print(service.connectResponse);
   }
@@ -34,10 +42,8 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Login Page'),
-      ),
-      body: SingleChildScrollView(
+      body: Container(
+        alignment: Alignment.center,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
