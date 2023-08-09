@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:walletconnect_modal_flutter/walletconnect_modal_flutter.dart';
 import 'package:walletconnect_flutter_v2/walletconnect_flutter_v2.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -27,16 +28,13 @@ class _LoginPageState extends State<LoginPage> {
   @override
   void initState() {
     super.initState();
+    context.loaderOverlay.show();
     startWalletConnectService();
+    context.loaderOverlay.hide();
   }
 
   startWalletConnectService() async {
     await service.init();
-  }
-
-  loginUsingMetamask(BuildContext context) {
-    service.open(context: context);
-    print(service.connectResponse);
   }
 
   @override
@@ -47,13 +45,27 @@ class _LoginPageState extends State<LoginPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(
-              'assets/images/logo.png',
-              fit: BoxFit.fitHeight,
+            Container(
+              margin: const EdgeInsets.only(left: 30.0, right: 30.0),
+              child: Image.asset(
+                'assets/images/Logo_Blockchain2.png',
+                fit: BoxFit.fitHeight,
+              ),
             ),
-            ElevatedButton(
-                onPressed: () => loginUsingMetamask(context),
-                child: const Text("Connect with Metamask"))
+            const Text(
+              "Bienvenido a la experiencia móvil Blockchain ",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 45,
+                //fontFamily: themeData.fontFamily,
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.only(top: 20.0),
+              child: WalletConnectModalConnect(
+                walletConnectModalService: service,
+              ),
+            ),
           ],
         ),
       ),

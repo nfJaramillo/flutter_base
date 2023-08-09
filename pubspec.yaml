@@ -19,6 +19,7 @@ dependencies:
   slider_button: ^2.0.0
   walletconnect_modal_flutter: ^1.2.0
   walletconnect_flutter_v2: ^2.1.0
+  loader_overlay: ^2.3.0
 
 dev_dependencies:
   flutter_test:
@@ -35,3 +36,8 @@ flutter:
   # The following section is specific to Flutter assets.
   assets:
       - assets/images/
+
+  fonts:
+      - family: Nunito
+        fonts:
+          - asset: assets/fonts/Nunito-VariableFont_wght.ttf
