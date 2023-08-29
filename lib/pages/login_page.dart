@@ -14,13 +14,15 @@ class _LoginPageState extends State<LoginPage> {
   WalletConnectModalService service = WalletConnectModalService(
     projectId: 'a2f8d571d4141cefbc3a26db7f6126a0',
     metadata: const PairingMetadata(
-      name: 'Flutter WalletConnect',
-      description: 'Flutter WalletConnectModal Sign Example',
-      url: 'https://walletconnect.com/',
-      icons: ['https://walletconnect.com/walletconnect-logo.png'],
+      name: 'Bancolmbia Flutter WalletConnect',
+      description: 'Bancolmbia Flutter WalletConnectModal Sign Example',
+      url: 'https://www.bancolombia.com/',
+      icons: [
+        'https://www.bancolombia.com/wcm/connect/b8e4c3f2-36a9-497d-a125-ac04f83b0bf8/LogoBancolombia.png?MOD=AJPERES'
+      ],
       redirect: Redirect(
         native: 'flutterdapp://',
-        universal: 'https://www.walletconnect.com',
+        universal: 'https://www.bancolombia.com/',
       ),
     ),
   );
@@ -28,13 +30,21 @@ class _LoginPageState extends State<LoginPage> {
   @override
   void initState() {
     super.initState();
-    context.loaderOverlay.show();
     startWalletConnectService();
-    context.loaderOverlay.hide();
   }
 
   startWalletConnectService() async {
+    showLoaderOverlay();
     await service.init();
+    hideLoaderOverlay();
+  }
+
+  showLoaderOverlay() {
+    context.loaderOverlay.show();
+  }
+
+  hideLoaderOverlay() {
+    context.loaderOverlay.hide();
   }
 
   @override
